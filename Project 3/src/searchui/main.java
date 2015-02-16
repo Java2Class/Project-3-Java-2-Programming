@@ -1,16 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Search Engine UI main class for COP-2805
+ * February 16, 2015
  */
 package searchui;
 
 /**
  *
- * @author Scrizz
+ * @author Jair Garcia-Varela
  */
-public class main {
+
+public class main { //this class just has the main method
     public static void main(String[] args) {
-        System.out.println("Initial repo skeleton");
+      UI search = new UI(); //creates a new UI object.
     }
 }
