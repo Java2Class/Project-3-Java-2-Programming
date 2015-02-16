@@ -1,4 +1,5 @@
 # Project-3-Java-2-Programming
+### Read the wiki for guidelines  
 
 // This is the project 3 Repo for Java II Advance Programming.
 // Creation date: February 10th, 2015.
