@@ -13,7 +13,6 @@ import java.awt.event.*;
 import javax.swing.*; // quick and easy pop-ups
 
 class UI {
-<<<<<<< HEAD
     UI() {
         //main window for search UI
         Frame window1 = new Frame("eXtreme Team Search");
@@ -27,9 +26,5 @@ class UI {
 				System.exit(0);
 			}
 	});
-=======
-    UI (){
-        JOptionPane.showMessageDialog(null,"This is a test popup"); //testing to see if imports worked
->>>>>>> 78a22e4db3b423c708d381d5984d1d2cf204f374
     }
 }
