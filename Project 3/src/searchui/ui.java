@@ -16,8 +16,22 @@ class UI {
     UI() {
         //main window for search UI
         Frame window1 = new Frame("eXtreme Team Search");
-        window1.setSize(700,580);
+        Panel searchBar = new Panel(new BorderLayout());
+        Button searchBtn = new Button("Search");
+        
+        window1.setSize(960,600);
         window1.setLocationRelativeTo(null);
+        searchBar.setBackground(Color.DARK_GRAY);
+        searchBar.setLayout(new GridLayout(3,3));
+        
+        //adding everything to the main window
+        window1.add(searchBar, BorderLayout.CENTER);
+        
+        //centering the search button in the search bar
+        for(int i=0; i < 4; i++) searchBar.add(new Label());
+        searchBar.add(searchBtn);
+        for(int i=0; i < 4; i++) searchBar.add(new Label());
+        
         window1.setVisible(true);
         
         //code for closing the window
