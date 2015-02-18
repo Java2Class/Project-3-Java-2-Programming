@@ -24,22 +24,28 @@ class UI {
             buttons.setLayout(new GridLayout(3,3, 10, 10));
             JButton searchIndexButton = new JButton("Search Index");
             searchIndexButton.setToolTipText("Runs a search of the index.");
+            searchIndexButton.addActionListener(new searchListener());
             
             JButton addIndexButton = new JButton("Add Files to Index");
             addIndexButton.setToolTipText("Allows you to add files to the index.");
+            addIndexButton.addActionListener(new addIndexListener());
                         
             JButton removeIndexButton = new JButton("Remove Files From Index");
             removeIndexButton.setToolTipText("Allows you to remove a file from the index.");
+            removeIndexButton.addActionListener(new removeListener());
                        
             JButton updateIndexButton = new JButton("Update Index.");
             updateIndexButton.setToolTipText("Allows you to update the index.");
+            updateIndexButton.addActionListener(new updateListener());
                         
             JButton clearButton = new JButton("Clear Fields");
             clearButton.setToolTipText("Clears entered fields.");
+            clearButton.addActionListener(new clearListener());
                        
             JButton exitButton = new JButton("Exit");
-            exitButton.setToolTipText("Exits the program.");
-                       
+            exitButton.setToolTipText("Exits the program.");           
+            exitButton.addActionListener(new exitListener());
+            
             buttons.add(searchIndexButton);
             buttons.add(addIndexButton);
             buttons.add(removeIndexButton);
@@ -48,6 +54,7 @@ class UI {
             buttons.add(exitButton);
             window1.add(buttons, BorderLayout.SOUTH);
         // end of button creation
+                 
             
         window1.setVisible(true);
         
@@ -58,4 +65,57 @@ class UI {
 			}
 	});
     }
+    
+    //By Haven Brewer
+    //Adds a listeners to the buttons
+    private static class searchListener implements ActionListener {
+        private Component frame;
+        @Override
+        public void actionPerformed(ActionEvent e){
+            JOptionPane.showMessageDialog(frame, "Search Button Operational.");
+        }
+    }
+
+    private static class addIndexListener implements ActionListener {
+        private Component frame;
+        @Override
+        public void actionPerformed(ActionEvent e){
+            JOptionPane.showMessageDialog(frame, "Add Index Button Operational.");
+        }
+    }
+
+    private static class removeListener implements ActionListener {
+        private Component frame;
+        @Override
+        public void actionPerformed(ActionEvent e){
+            JOptionPane.showMessageDialog(frame, "Remove Button Operational.");
+        }
+    }
+
+    private static class updateListener implements ActionListener {
+        private Component frame;
+        @Override
+        public void actionPerformed(ActionEvent e){
+            JOptionPane.showMessageDialog(frame, "Update Button Operational.");
+        }
+    }
+    
+    private static class clearListener implements ActionListener {
+        private Component frame;
+        @Override
+        public void actionPerformed(ActionEvent e){
+            JOptionPane.showMessageDialog(frame, "Clear Button Operational.");
+        }
+    }
+    
+    //There is no frame for the exit button. Exit button will close the window
+    private static class exitListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e){
+            System.exit(0);
+        }
+    }
+    //End Action Listeners 
+   
+    
 }
