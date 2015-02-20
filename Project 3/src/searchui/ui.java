@@ -28,7 +28,11 @@ class UI {
             
             JButton addIndexButton = new JButton("Add Files to Index");
             addIndexButton.setToolTipText("Allows you to add files to the index.");
-            addIndexButton.addActionListener(new addIndexListener());
+            addIndexButton.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                JOptionPane.showMessageDialog(window1, "Add Index Button Operational.");
+               }}
+            );
                         
             JButton removeIndexButton = new JButton("Remove Files From Index");
             removeIndexButton.setToolTipText("Allows you to remove a file from the index.");
@@ -126,7 +130,7 @@ class UI {
             JOptionPane.showMessageDialog(frame, "Search Button Operational.");
         }
     }
-
+/*
     private static class addIndexListener implements ActionListener {
         private Component frame;
         @Override
@@ -134,6 +138,7 @@ class UI {
             JOptionPane.showMessageDialog(frame, "Add Index Button Operational.");
         }
     }
+ */
 
     private static class removeListener implements ActionListener {
         private Component frame;
