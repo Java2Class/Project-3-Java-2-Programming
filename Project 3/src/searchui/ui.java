@@ -76,8 +76,11 @@ class UI {
         pRadioButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 10,10));        
         //Create Radio Buttons For Panel
         JRadioButton jrbAll = new JRadioButton("Search ALL Terms");
+        jrbAll.addActionListener(new jrbAllListener());
         JRadioButton jrbAny = new JRadioButton("Search ANY Term", true);
+        jrbAny.addActionListener(new jrbAnyListener());
         JRadioButton jrbExact = new JRadioButton("Search Exact Phrase");
+        jrbExact.addActionListener(new jrbExactListener());
         //Add Radio Buttons To Group
         ButtonGroup bgSearch = new ButtonGroup();
         bgSearch.add(jrbAny);
@@ -156,6 +159,29 @@ class UI {
         }
     }
     
+    private static class jrbAllListener implements ActionListener {
+        private Component frame;
+        @Override
+        public void actionPerformed(ActionEvent e){
+            JOptionPane.showMessageDialog(frame,"All Radio Button Operational.");
+        }
+    }
+    
+    private static class jrbAnyListener implements ActionListener {
+        private Component frame;
+        @Override
+        public void actionPerformed(ActionEvent e){
+            JOptionPane.showMessageDialog(frame, "Any Radio Button Operational.");
+        }
+    }
+    
+    private static class jrbExactListener implements ActionListener {
+        private Component frame;
+        @Override
+        public void actionPerformed(ActionEvent e){
+            JOptionPane.showMessageDialog(frame, "Exact radio Button Operational.");
+        }
+    }
     //There is no frame for the exit button. Exit button will close the window
     private static class exitListener implements ActionListener {
         @Override
