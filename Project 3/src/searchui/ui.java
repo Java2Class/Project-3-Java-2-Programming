@@ -24,15 +24,19 @@ class UI {
             buttons.setLayout(new GridLayout(3,3, 10, 10));
             JButton searchIndexButton = new JButton("Search Index");
             searchIndexButton.setToolTipText("Runs a search of the index.");
-            searchIndexButton.addActionListener(new searchListener());
+            searchIndexButton.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    JOptionPane.showMessageDialog(window1, "Search Button Operational.");
+                }
+            });
             
             JButton addIndexButton = new JButton("Add Files to Index");
             addIndexButton.setToolTipText("Allows you to add files to the index.");
             addIndexButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
-                JOptionPane.showMessageDialog(window1, "Add Index Button Operational.");
-               }}
-            );
+                    JOptionPane.showMessageDialog(window1, "Add Index Button Operational.");
+                }
+            });
                         
             JButton removeIndexButton = new JButton("Remove Files From Index");
             removeIndexButton.setToolTipText("Allows you to remove a file from the index.");
@@ -68,7 +72,11 @@ class UI {
         JLabel jlblSearch = new JLabel("Enter Terms to Search:");
         JTextField jtfSearch = new JTextField(30);
         JButton jbtnSearch = new JButton("Search");
-        jbtnSearch.addActionListener(new searchListener());
+        jbtnSearch.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    JOptionPane.showMessageDialog(window1, "Search button Operational.");
+                }
+        });
         
         pSearchBar.add(jlblSearch);
         pSearchBar.add(jtfSearch);
@@ -123,22 +131,6 @@ class UI {
     
     //By Haven Brewer
     //Adds a listeners to the buttons
-    private static class searchListener implements ActionListener {
-        private Component frame;
-        @Override
-        public void actionPerformed(ActionEvent e){
-            JOptionPane.showMessageDialog(frame, "Search Button Operational.");
-        }
-    }
-/*
-    private static class addIndexListener implements ActionListener {
-        private Component frame;
-        @Override
-        public void actionPerformed(ActionEvent e){
-            JOptionPane.showMessageDialog(frame, "Add Index Button Operational.");
-        }
-    }
- */
 
     private static class removeListener implements ActionListener {
         private Component frame;
