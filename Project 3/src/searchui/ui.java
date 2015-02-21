@@ -34,7 +34,10 @@ class UI {
             addIndexButton.setToolTipText("Allows you to add files to the index.");
             addIndexButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
-                    JOptionPane.showMessageDialog(window1, "Add Index Button Operational.");
+                    FileDialog fd = new FileDialog(window1,"Choose files to open");
+                    fd.setMultipleMode(true);
+                    fd.getFiles();
+                    fd.setVisible(true);
                 }
             });
                         
