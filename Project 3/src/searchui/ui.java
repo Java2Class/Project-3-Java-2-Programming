@@ -16,7 +16,7 @@ class UI {
     UI() {
         //main window for search UI
         Frame window1 = new Frame("eXtreme Team Search");
-        window1.setSize(700,580);
+        window1.setSize(960,600);
         window1.setLocationRelativeTo(null);
         
         //all of the buttons needed -Kerb
