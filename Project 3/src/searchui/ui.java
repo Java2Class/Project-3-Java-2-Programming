@@ -24,38 +24,42 @@ class UI {
             buttons.setLayout(new GridLayout(3,3, 10, 10));
             JButton searchIndexButton = new JButton("Search Index");
             searchIndexButton.setToolTipText("Runs a search of the index.");
-            searchIndexButton.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    JOptionPane.showMessageDialog(window1, "Search Button Operational.");
-                }
+            searchIndexButton.addActionListener((ActionEvent e) -> {
+                JOptionPane.showMessageDialog(window1, "Search Button Operational.");
             });
             
             JButton addIndexButton = new JButton("Add Files to Index");
             addIndexButton.setToolTipText("Allows you to add files to the index.");
-            addIndexButton.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    FileDialog fd = new FileDialog(window1,"Choose files to open");
-                    fd.setMultipleMode(true);
-                    fd.getFiles();
-                    fd.setVisible(true);
-                }
+            addIndexButton.addActionListener((ActionEvent e) -> {
+                FileDialog fd = new FileDialog(window1,"Choose files to open");
+                fd.setMultipleMode(true);
+                fd.getFiles();
+                fd.setVisible(true);
             });
                         
             JButton removeIndexButton = new JButton("Remove Files From Index");
             removeIndexButton.setToolTipText("Allows you to remove a file from the index.");
-            removeIndexButton.addActionListener(new removeListener());
+            removeIndexButton.addActionListener((ActionEvent e) -> {
+                JOptionPane.showMessageDialog(window1, "Remove Button Operational.");
+            });
                        
             JButton updateIndexButton = new JButton("Update Index.");
             updateIndexButton.setToolTipText("Allows you to update the index.");
-            updateIndexButton.addActionListener(new updateListener());
+            updateIndexButton.addActionListener((ActionEvent e) -> {
+                JOptionPane.showMessageDialog(window1, "Update Button Operational.");
+            });
                         
             JButton clearButton = new JButton("Clear Fields");
             clearButton.setToolTipText("Clears entered fields.");
-            clearButton.addActionListener(new clearListener());
+            clearButton.addActionListener((ActionEvent e) -> {
+                JOptionPane.showMessageDialog(window1, "Clear Button Operational.");
+            });
                        
             JButton exitButton = new JButton("Exit");
             exitButton.setToolTipText("Exits the program.");           
-            exitButton.addActionListener(new exitListener());
+            exitButton.addActionListener((ActionEvent e) -> {
+                System.exit(0);
+            });
             
             buttons.add(searchIndexButton);
             buttons.add(addIndexButton);
@@ -75,10 +79,8 @@ class UI {
         JLabel jlblSearch = new JLabel("Enter Terms to Search:");
         JTextField jtfSearch = new JTextField(30);
         JButton jbtnSearch = new JButton("Search");
-        jbtnSearch.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    JOptionPane.showMessageDialog(window1, "Search button Operational.");
-                }
+        jbtnSearch.addActionListener((ActionEvent e) -> {
+            JOptionPane.showMessageDialog(window1, "Search button Operational.");
         });
         
         pSearchBar.add(jlblSearch);
@@ -88,14 +90,25 @@ class UI {
         //************************************************************
         //Create Panel For Buttons
         JPanel pRadioButtons = new JPanel();
-        pRadioButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 10,10));        
+        pRadioButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 10,10));
+        
         //Create Radio Buttons For Panel
         JRadioButton jrbAll = new JRadioButton("Search ALL Terms");
-        jrbAll.addActionListener(new jrbAllListener());
+        jrbAll.addActionListener((ActionEvent e) -> {
+            JOptionPane.showMessageDialog(window1,"All Radio Button Operational.");
+        });
+        
         JRadioButton jrbAny = new JRadioButton("Search ANY Term", true);
-        jrbAny.addActionListener(new jrbAnyListener());
+        jrbAny.addActionListener((ActionEvent e) -> {
+            JOptionPane.showMessageDialog(window1, "Any Radio Button Operational.");
+        });
+        
         JRadioButton jrbExact = new JRadioButton("Search Exact Phrase");
-        jrbExact.addActionListener(new jrbExactListener());
+        jrbExact.addActionListener((ActionEvent e) -> {
+            JOptionPane.showMessageDialog(window1, "Exact radio Button Operational.");
+        });
+        
+        
         //Add Radio Buttons To Group
         ButtonGroup bgSearch = new ButtonGroup();
         bgSearch.add(jrbAny);
@@ -117,79 +130,15 @@ class UI {
         //*********************************************************
         //Add Search Panel to Main Window in North Position
         window1.add((pSearch), BorderLayout.NORTH);
-        
-        
-        
-        
-            
+                    
         window1.setVisible(true);
         
         //code for closing the window
         window1.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent windowEvent) {
-				System.exit(0);
-			}
+            @Override
+            public void windowClosing(WindowEvent windowEvent) {
+                System.exit(0);
+            }
 	});
     }
-    
-    //By Haven Brewer
-    //Adds a listeners to the buttons
-
-    private static class removeListener implements ActionListener {
-        private Component frame;
-        @Override
-        public void actionPerformed(ActionEvent e){
-            JOptionPane.showMessageDialog(frame, "Remove Button Operational.");
-        }
-    }
-
-    private static class updateListener implements ActionListener {
-        private Component frame;
-        @Override
-        public void actionPerformed(ActionEvent e){
-            JOptionPane.showMessageDialog(frame, "Update Button Operational.");
-        }
-    }
-    
-    private static class clearListener implements ActionListener {
-        private Component frame;
-        @Override
-        public void actionPerformed(ActionEvent e){
-            JOptionPane.showMessageDialog(frame, "Clear Button Operational.");
-        }
-    }
-    
-    private static class jrbAllListener implements ActionListener {
-        private Component frame;
-        @Override
-        public void actionPerformed(ActionEvent e){
-            JOptionPane.showMessageDialog(frame,"All Radio Button Operational.");
-        }
-    }
-    
-    private static class jrbAnyListener implements ActionListener {
-        private Component frame;
-        @Override
-        public void actionPerformed(ActionEvent e){
-            JOptionPane.showMessageDialog(frame, "Any Radio Button Operational.");
-        }
-    }
-    
-    private static class jrbExactListener implements ActionListener {
-        private Component frame;
-        @Override
-        public void actionPerformed(ActionEvent e){
-            JOptionPane.showMessageDialog(frame, "Exact radio Button Operational.");
-        }
-    }
-    //There is no frame for the exit button. Exit button will close the window
-    private static class exitListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e){
-            System.exit(0);
-        }
-    }
-    //End Action Listeners 
-   
-    
 }
