@@ -25,17 +25,19 @@ class UI {
         
         //all of the buttons needed
         JPanel buttons = new JPanel();
-            buttons.setLayout(new GridLayout(3,3, 10, 10));
+            buttons.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
             JButton searchIndexButton = new JButton("Search Index");
             searchIndexButton.setToolTipText("Runs a search of the index.");
+            searchIndexButton.setPreferredSize(new Dimension(110, 27));
             searchIndexButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
                     JOptionPane.showMessageDialog(window1, "Search Button Operational.");
                 }
             });
             
-            JButton addIndexButton = new JButton("Add Files to Index");
+            JButton addIndexButton = new JButton("Add Files");
             addIndexButton.setToolTipText("Allows you to add files to the index.");
+            addIndexButton.setPreferredSize(new Dimension(110, 27));
             addIndexButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
                     FileDialog fd = new FileDialog(window1,"Choose files to open");
@@ -45,16 +47,18 @@ class UI {
                 }
             });
                         
-            JButton removeIndexButton = new JButton("Remove Files From Index");
+            JButton removeIndexButton = new JButton("Remove Files");
             removeIndexButton.setToolTipText("Allows you to remove a file from the index.");
+            removeIndexButton.setPreferredSize(new Dimension(110, 27));
             removeIndexButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
                     JOptionPane.showMessageDialog(window1, "Remove Button Operational.");
                 }
             });
                        
-            JButton updateIndexButton = new JButton("Update Index.");
+            JButton updateIndexButton = new JButton("Update Index");
             updateIndexButton.setToolTipText("Allows you to update the index.");
+            updateIndexButton.setPreferredSize(new Dimension(110, 27));
             updateIndexButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
                     JOptionPane.showMessageDialog(window1, "Update Button Operational.");
@@ -63,6 +67,7 @@ class UI {
                         
             JButton clearButton = new JButton("Clear Fields");
             clearButton.setToolTipText("Clears entered fields.");
+            clearButton.setPreferredSize(new Dimension(110, 27));
             clearButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
                     JOptionPane.showMessageDialog(window1, "Clear Button Operational.");
@@ -70,7 +75,8 @@ class UI {
             });
                        
             JButton exitButton = new JButton("Exit");
-            exitButton.setToolTipText("Exits the program.");           
+            exitButton.setToolTipText("Exits the program.");
+            exitButton.setPreferredSize(new Dimension(110, 27));
             exitButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e){
                     System.exit(0);
