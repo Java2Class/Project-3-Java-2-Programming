@@ -7,6 +7,8 @@ package searchui;
 /**
  *
  * @author Jair Garcia-Varela
+ * @author Haven Brewer
+ * 
  */
 
 public class main { //this class just has the main method
