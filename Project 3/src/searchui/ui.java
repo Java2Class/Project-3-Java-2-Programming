@@ -20,6 +20,7 @@ class UI {
         window1.setLocationRelativeTo(null);
         
         //all of the buttons needed -Kerb
+        //The Listeners are an anynomous class with Lambdas to shorten coding
         JPanel buttons = new JPanel();
             buttons.setLayout(new GridLayout(3,3, 10, 10));
             JButton searchIndexButton = new JButton("Search Index");
