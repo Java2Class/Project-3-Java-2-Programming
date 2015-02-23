@@ -6,7 +6,11 @@ package searchui;
 
 /**
  *
+ * @author Chris Howard
  * @author Jair Garcia-Varela
+ * @author Jason Kerby
+ * @author John Silvey
+ * @author Haven Brewer
  */
 import java.awt.*;
 import java.awt.event.*;
@@ -22,14 +26,14 @@ class UI {
         //all of the buttons needed -Kerb
         //The Listeners are an anynomous class with Lambdas to shorten coding
         JPanel buttons = new JPanel();
-            buttons.setLayout(new GridLayout(3,3, 10, 10));
+            buttons.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
             JButton searchIndexButton = new JButton("Search Index");
             searchIndexButton.setToolTipText("Runs a search of the index.");
             searchIndexButton.addActionListener((ActionEvent e) -> {
                 JOptionPane.showMessageDialog(window1, "Search Button Operational.");
             });
             
-            JButton addIndexButton = new JButton("Add Files to Index");
+            JButton addIndexButton = new JButton("Add Files");
             addIndexButton.setToolTipText("Allows you to add files to the index.");
             addIndexButton.addActionListener((ActionEvent e) -> {
                 FileDialog fd = new FileDialog(window1,"Choose files to open");
@@ -38,13 +42,13 @@ class UI {
                 fd.setVisible(true);
             });
                         
-            JButton removeIndexButton = new JButton("Remove Files From Index");
+            JButton removeIndexButton = new JButton("Remove Files");
             removeIndexButton.setToolTipText("Allows you to remove a file from the index.");
             removeIndexButton.addActionListener((ActionEvent e) -> {
                 JOptionPane.showMessageDialog(window1, "Remove Button Operational.");
             });
                        
-            JButton updateIndexButton = new JButton("Update Index.");
+            JButton updateIndexButton = new JButton("Update Index");
             updateIndexButton.setToolTipText("Allows you to update the index.");
             updateIndexButton.addActionListener((ActionEvent e) -> {
                 JOptionPane.showMessageDialog(window1, "Update Button Operational.");
@@ -131,8 +135,6 @@ class UI {
         //*********************************************************
         //Add Search Panel to Main Window in North Position
         window1.add((pSearch), BorderLayout.NORTH);
-                    
-        window1.setVisible(true);
         
         //code for closing the window
         window1.addWindowListener(new WindowAdapter() {
@@ -141,5 +143,6 @@ class UI {
                 System.exit(0);
             }
 	});
+        window1.setVisible(true);
     }
 }
