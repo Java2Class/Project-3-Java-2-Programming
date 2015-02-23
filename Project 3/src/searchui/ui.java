@@ -23,7 +23,7 @@ class UI {
         window1.setSize(960,600);
         window1.setLocationRelativeTo(null);
         
-        //all of the buttons needed -Kerb
+        //all of the buttons needed
         //The Listeners are an anynomous class with Lambdas to shorten coding
         JPanel buttons = new JPanel();
             buttons.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
@@ -112,8 +112,7 @@ class UI {
         jrbExact.addActionListener((ActionEvent e) -> {
             JOptionPane.showMessageDialog(window1, "Exact radio Button Operational.");
         });
-        
-        
+         
         //Add Radio Buttons To Group
         ButtonGroup bgSearch = new ButtonGroup();
         bgSearch.add(jrbAny);
