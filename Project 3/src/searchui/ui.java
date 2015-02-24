@@ -160,6 +160,7 @@ class UI {
         pRadioButtons.add(jrbAll);
         pRadioButtons.add(jrbExact);
         
+        
         //********************************************************
         //Create Panel to Combine Search Bar and Search Button Panels
         JPanel pSearch = new JPanel();
@@ -168,9 +169,18 @@ class UI {
         pSearch.add((pSearchBar), BorderLayout.NORTH);
         pSearch.add((pRadioButtons),BorderLayout.CENTER);
         
+        //make all backgrounds the same color
+        pSearch.setBackground(Color.WHITE);
+        pRadioButtons.setBackground(Color.WHITE);
+        jrbAny.setBackground(Color.WHITE);
+        jrbAll.setBackground(Color.WHITE);
+        jrbExact.setBackground(Color.WHITE);
+        buttons.setBackground(Color.WHITE);
+        pSearchBar.setBackground(Color.WHITE);
+        
         //*********************************************************
-        //Add Search Panel to Main Window in North Position
-        window1.add((top), BorderLayout.NORTH);
+        //Add Search Panel to Main Window in Center Position and logo in North
+        window1.add(logo, BorderLayout.NORTH);
         window1.add(pSearch, BorderLayout.CENTER);
         //code for closing the window
         window1.addWindowListener(new WindowAdapter() {
