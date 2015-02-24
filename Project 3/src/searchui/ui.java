@@ -23,6 +23,11 @@ class UI {
         window1.setSize(960,600);
         window1.setLocationRelativeTo(null);
         
+        // adds Extreme Team Search engine photo
+        ImageIcon image = new ImageIcon(getClass().getResource("/Project 3/src/images/EXTS.png"));
+        JPanel.add(new JLabel(image), BorderLayout.NORTH);
+        // end of the picture code.
+        
         //all of the buttons needed
         JPanel buttons = new JPanel();
             buttons.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
