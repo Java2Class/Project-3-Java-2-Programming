@@ -24,8 +24,10 @@ class UI {
         window1.setLocationRelativeTo(null);
         
         // adds Extreme Team Search engine photo
-        ImageIcon image = new ImageIcon(getClass().getResource("/Project 3/src/images/EXTS.png"));
-        JPanel.add(new JLabel(image), BorderLayout.NORTH);
+        ImageIcon image = new ImageIcon(getClass().getResource("../images/EXTS.png"));
+        JLabel logo = new JLabel(image);
+        JPanel top = new JPanel();
+        top.add(logo, BorderLayout.NORTH);
         // end of the picture code.
         
         //all of the buttons needed
@@ -168,8 +170,8 @@ class UI {
         
         //*********************************************************
         //Add Search Panel to Main Window in North Position
-        window1.add((pSearch), BorderLayout.NORTH);
-        
+        window1.add((top), BorderLayout.NORTH);
+        window1.add(pSearch, BorderLayout.CENTER);
         //code for closing the window
         window1.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent windowEvent) {
