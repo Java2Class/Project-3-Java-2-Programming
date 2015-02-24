@@ -26,8 +26,6 @@ class UI {
         // adds Extreme Team Search engine photo
         ImageIcon image = new ImageIcon(getClass().getResource("../images/EXTS.png"));
         JLabel logo = new JLabel(image);
-        JPanel top = new JPanel();
-        top.add(logo, BorderLayout.NORTH);
         // end of the picture code.
         
         //all of the buttons needed
