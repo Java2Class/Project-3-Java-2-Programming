@@ -26,6 +26,8 @@ class UI {
         //all of the buttons needed
         JPanel buttons = new JPanel();
             buttons.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
+            //Commented out the lower search button due to duplication JS
+            /*
             JButton searchIndexButton = new JButton("Search Index");
             searchIndexButton.setToolTipText("Runs a search of the index.");
             searchIndexButton.setPreferredSize(new Dimension(110, 27));
@@ -34,6 +36,7 @@ class UI {
                     JOptionPane.showMessageDialog(window1, "Search Button Operational.");
                 }
             });
+            */
             
             JButton addIndexButton = new JButton("Add Files");
             addIndexButton.setToolTipText("Allows you to add files to the index.");
@@ -83,7 +86,9 @@ class UI {
 		}
             });
             
-            buttons.add(searchIndexButton);
+            //Commented out the lower search button due to duplication JS
+            //buttons.add(searchIndexButton); 
+            
             buttons.add(addIndexButton);
             buttons.add(removeIndexButton);
             buttons.add(updateIndexButton);
@@ -101,6 +106,7 @@ class UI {
         JLabel jlblSearch = new JLabel("Enter Terms to Search:");
         JTextField jtfSearch = new JTextField(30);
         JButton jbtnSearch = new JButton("Search");
+        jbtnSearch.setToolTipText("Runs a search of the index.");
         jbtnSearch.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
                     JOptionPane.showMessageDialog(window1, "Search button Operational.");
@@ -117,18 +123,21 @@ class UI {
         pRadioButtons.setLayout(new FlowLayout(FlowLayout.CENTER, 10,10));        
         //Create Radio Buttons For Panel
         JRadioButton jrbAll = new JRadioButton("Search ALL Terms");
+        jrbAll.setToolTipText("Performs an AND search, searching all terms.");
         jrbAll.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 JOptionPane.showMessageDialog(window1,"All Radio Button Operational.");
             }
         });
         JRadioButton jrbAny = new JRadioButton("Search ANY Term", true);
+        jrbAny.setToolTipText("Performs an OR search, searching any terms.");
         jrbAny.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 JOptionPane.showMessageDialog(window1, "Any Radio Button Operational.");
             }
         });
         JRadioButton jrbExact = new JRadioButton("Search Exact Phrase");
+        jrbExact.setToolTipText("Performs a search containing the exact phrase entered.");
         jrbExact.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 JOptionPane.showMessageDialog(window1, "Exact radio Button Operational.");
