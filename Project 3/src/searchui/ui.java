@@ -90,9 +90,9 @@ class UI {
             exitButton.setToolTipText("Exits the program.");
             exitButton.setPreferredSize(new Dimension(110, 27));
             exitButton.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e){
+            	public void actionPerformed(ActionEvent e){
                     System.exit(0);
-		}
+            	}
             });
             
             //Commented out the lower search button due to duplication JS
@@ -189,7 +189,7 @@ class UI {
 			public void windowClosing(WindowEvent windowEvent) {
 				System.exit(0);
 			}
-	});
+        });
         window1.setVisible(true);
     }
 }
