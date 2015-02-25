@@ -1,6 +1,7 @@
 /*
  * Search engine UI class for COP-2805
  * Contains all the parts of the user interface
+ * Version: BETA
  */
 package searchui;
 
