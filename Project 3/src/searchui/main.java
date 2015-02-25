@@ -5,9 +5,11 @@
 package searchui;
 
 /**
- *
+ * @author Chris Howard
  * @author Jair Garcia-Varela
- * 
+ * @author Jason Kerby
+ * @author John Silvey
+ * @author Haven Brewer
  */
 
 public class main { //this class just has the main method
