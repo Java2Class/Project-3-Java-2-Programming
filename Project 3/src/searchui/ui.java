@@ -28,6 +28,9 @@ class UI {
         JLabel logo = new JLabel(image);
         // end of the picture code.
         
+        //sets custom icon for application
+        window1.setIconImage(image.getImage());
+        
         //all of the buttons needed
         JPanel buttons = new JPanel();
             buttons.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
