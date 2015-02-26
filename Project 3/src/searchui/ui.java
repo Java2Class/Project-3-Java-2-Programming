@@ -1,7 +1,7 @@
 /*
  * Search engine UI class for COP-2805
  * Contains all the parts of the user interface
- * Version: BETA
+ * Version: 1.0
  */
 package searchui;
 
@@ -35,17 +35,6 @@ class UI {
         //all of the buttons needed
         JPanel buttons = new JPanel();
             buttons.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
-            //Commented out the lower search button due to duplication JS
-            /*
-            JButton searchIndexButton = new JButton("Search Index");
-            searchIndexButton.setToolTipText("Runs a search of the index.");
-            searchIndexButton.setPreferredSize(new Dimension(110, 27));
-            searchIndexButton.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    JOptionPane.showMessageDialog(window1, "Search Button Operational.");
-                }
-            });
-            */
             
             JButton addIndexButton = new JButton("Add Files");
             addIndexButton.setToolTipText("Allows you to add files to the index.");
@@ -94,9 +83,6 @@ class UI {
                     System.exit(0);
             	}
             });
-            
-            //Commented out the lower search button due to duplication JS
-            //buttons.add(searchIndexButton); 
             
             buttons.add(addIndexButton);
             buttons.add(removeIndexButton);
