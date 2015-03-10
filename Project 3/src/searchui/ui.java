@@ -19,7 +19,7 @@ import javax.swing.*; // quick and easy pop-ups
 import java.io.*;
 
 class UI {
-    UI() {
+    UI(String s) {
         //main window for search UI
         Frame window1 = new Frame("eXtreme Team Search");
         window1.setSize(960,600);
@@ -53,7 +53,7 @@ class UI {
                     String filePath = file + fileName;  //filePath = the full pathname of the file
  //Testing                   System.out.println(filePath);
  //made a new class to handle this, since it would be too cumbersome otherwise (line 56)                   
-                    AddFile addFile = new AddFile(filePath);
+                    AddFile addFile = new AddFile(filePath, s);
                 }
             });
                         

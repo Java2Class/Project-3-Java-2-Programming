@@ -12,20 +12,24 @@ import java.io.*;
  * @author Jason Kerby
  */
 class AddFile {
-    AddFile(String filePath){
+    AddFile(String filePath, String indexPath){
         try{
-           File f = new File(filePath);
-           BufferedReader in = new BufferedReader(new FileReader(filePath));
-           String line = in.readLine();
-            while(line != null){
-//Testing                System.out.println(line);
-//Testing                System.out.println(f);
-//Testing                System.out.println(f.lastModified());
-                line=in.readLine();
+            File f = new File(filePath);
+            File g = new File(indexPath);
+            long lastModified = f.lastModified();
+            String lm = String.valueOf(lastModified);
+            System.out.println(lm);
+            BufferedWriter bw = new BufferedWriter(new FileWriter(indexPath, true));
+            bw.write(filePath);
+            bw.newLine();
+            bw.write(lm);
+            bw.newLine();
+            bw.flush();
+            bw.close();
             }
-        }
         catch(Exception e){
             JOptionPane.showMessageDialog(null,"No such file!");
         }
     }
+
 }
