@@ -16,6 +16,7 @@ package searchui;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*; // quick and easy pop-ups
+import java.io.*;
 
 class UI {
     UI() {
@@ -41,10 +42,18 @@ class UI {
             addIndexButton.setPreferredSize(new Dimension(110, 27));
             addIndexButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
-                    FileDialog fd = new FileDialog(window1,"Choose files to open");
-                    fd.setMultipleMode(true);
-                    fd.getFiles();
+// Modified some of this.  Removed your ability to select more than one file at
+// a time. I think keeping it simple is much easier to manage, especially when I
+// have to send pathnames to AddFile. -Kerb
+                    FileDialog fd = new FileDialog(window1,"Choose file to open");
                     fd.setVisible(true);
+                    String fileName = fd.getFile();  //fileName = the literal name of the file
+//Testing                    System.out.println(fileName);
+                    String file = fd.getDirectory();  //file = the actual path of the file
+                    String filePath = file + fileName;  //filePath = the full pathname of the file
+ //Testing                   System.out.println(filePath);
+ //made a new class to handle this, since it would be too cumbersome otherwise (line 56)                   
+                    AddFile addFile = new AddFile(filePath);
                 }
             });
                         
