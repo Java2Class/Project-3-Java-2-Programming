@@ -55,9 +55,17 @@ class RemoveFile {
     //creating a new window for a file chooser
     //the file chooser enables the user to select the files wanted to be removed
         java.awt.List removeList = new java.awt.List();
-        //adding entries to the new window for each item in the index
-        for(int i = 0; i < aList.size(); i++) removeList.add(aList.get(i));
         
+        //adding entries to the new window for each item in the index
+        for (int i = 0; i < aList.size(); i++) {
+            //checking to make sure no null items are printed
+            //it's "nullnull" because the filepath param from addFiles
+            //can have two null concatenated strings
+            if (aList.get(i).toString().equals("nullnull") ) {
+            } else {
+                removeList.add(aList.get(i));
+            }
+        }
         Frame removeWindow = new Frame("Remove Files"); //new window
         Panel removeCancel = new Panel(new GridLayout(5,3)); //button panel
         JButton btnRemove = new JButton("Remove");
@@ -79,9 +87,11 @@ class RemoveFile {
             public void actionPerformed(ActionEvent e) {
                 //won't remove an item unless something is selected
                 if(removeList.getSelectedItem() == null){
-                    
+                    JOptionPane.showMessageDialog(null, "No item was selected.");
                 } else {
+                    JOptionPane.showMessageDialog(null, removeList.getSelectedItem()+" was removed from the index.");
                     removeFile(mIndex, aList, removeList.getSelectedItem());
+                    removeWindow.setVisible(false);
                 }
             }
         });
