@@ -17,13 +17,20 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*; // quick and easy pop-ups
 import java.io.*;
+import java.util.*;
 
 class UI {
-    UI(String s) {
+    /**
+     * 
+     * @param s the absolute path of the index
+     * @param mIndex map that stores the file names and path names
+     */
+    UI(String s, Map mIndex) {
         //main window for search UI
         Frame window1 = new Frame("eXtreme Team Search");
         window1.setSize(960,600);
         window1.setLocationRelativeTo(null);
+        
         
         // adds Extreme Team Search engine photo
         ImageIcon image = new ImageIcon(getClass().getResource("../images/EXTS.png"));
@@ -40,6 +47,7 @@ class UI {
             JButton addIndexButton = new JButton("Add Files");
             addIndexButton.setToolTipText("Allows you to add files to the index.");
             addIndexButton.setPreferredSize(new Dimension(110, 27));
+            ArrayList<String> aList = new ArrayList<String>();
             addIndexButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
 // Modified some of this.  Removed your ability to select more than one file at
@@ -53,7 +61,11 @@ class UI {
                     String filePath = file + fileName;  //filePath = the full pathname of the file
  //Testing                   System.out.println(filePath);
  //made a new class to handle this, since it would be too cumbersome otherwise (line 56)                   
-                    AddFile addFile = new AddFile(filePath, s);
+                    AddFile.addFile(filePath, s, mIndex);
+                    if (aList.contains(filePath)) {
+                    } else {
+                        aList.add(filePath);
+                    }
                 }
             });
                         
@@ -62,7 +74,7 @@ class UI {
             removeIndexButton.setPreferredSize(new Dimension(110, 27));
             removeIndexButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
-                    JOptionPane.showMessageDialog(window1, "Remove Button Operational.");
+                    RemoveFile.removeFile(mIndex, aList);
                 }
             });
                        
