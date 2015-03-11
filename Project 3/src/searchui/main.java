@@ -6,6 +6,7 @@ package searchui;
 
 import java.io.*;
 import javax.swing.*;
+import java.util.*;
 
 /**
  * @author Chris Howard
@@ -14,7 +15,7 @@ import javax.swing.*;
  * @author John Silvey
  * @author Haven Brewer
  */
-public class main { //this class just has the main method
+class main { //this class just has the main method
 
     public static void main(String[] args) throws Exception {
         //Creates the index needed for the program in the user's default folder.
@@ -29,7 +30,7 @@ public class main { //this class just has the main method
             JOptionPane.showMessageDialog(null, "Index not created.");
         }
         String s = index.getAbsolutePath();
-        
-        UI search = new UI(s); //creates a new UI object.
+        Map mIndex = new HashMap();
+        UI search = new UI(s, mIndex); //creates a new UI object.
     }
 }
