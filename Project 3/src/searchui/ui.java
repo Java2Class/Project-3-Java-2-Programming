@@ -51,23 +51,8 @@ class UI {
             addIndexButton.setPreferredSize(new Dimension(110, 27));
             ArrayList<String> aList = new ArrayList<String>();
             addIndexButton.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-// Modified some of this.  Removed your ability to select more than one file at
-// a time. I think keeping it simple is much easier to manage, especially when I
-// have to send pathnames to AddFile. -Kerb
-                    FileDialog fd = new FileDialog(window1,"Choose file to open");
-                    fd.setVisible(true);
-                    String fileName = fd.getFile();  //fileName = the literal name of the file
-//Testing                    System.out.println(fileName);
-                    String file = fd.getDirectory();  //file = the actual path of the file
-                    String filePath = file + fileName;  //filePath = the full pathname of the file
- //Testing                   System.out.println(filePath);
- //made a new class to handle this, since it would be too cumbersome otherwise (line 56)                   
-                    AddFile.addFile(filePath, s, mIndex);
-                    if (aList.contains(filePath)) {
-                    } else {
-                        aList.add(filePath);
-                    }
+                public void actionPerformed(ActionEvent e){      
+                    AddFile.addFile(s, mIndex, aList);
                 }
             });
                         
@@ -88,15 +73,6 @@ class UI {
                     JOptionPane.showMessageDialog(window1, "Update Button Operational.");
                 }
             });
-                        
-            JButton clearButton = new JButton("Clear Fields");
-            clearButton.setToolTipText("Clears entered fields.");
-            clearButton.setPreferredSize(new Dimension(110, 27));
-            clearButton.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    JOptionPane.showMessageDialog(window1, "Clear Button Operational.");
-                }
-            });
                        
             JButton exitButton = new JButton("Exit");
             exitButton.setToolTipText("Exits the program.");
@@ -110,7 +86,6 @@ class UI {
             buttons.add(addIndexButton);
             buttons.add(removeIndexButton);
             buttons.add(updateIndexButton);
-            buttons.add(clearButton);
             buttons.add(exitButton);
             window1.add(buttons, BorderLayout.SOUTH);
         // end of button creation

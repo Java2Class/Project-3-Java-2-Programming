@@ -1,6 +1,6 @@
 /*
- *      This class handles the ability to add files to the index.  I'm still
-*       working on the details. -Kerb
+ *      This class handles the file maintenance part of the program.  Functions
+ *      include Adding, Removing, and Updating.
  */
 package searchui;
 import java.awt.*;
@@ -14,11 +14,36 @@ import java.util.*;
  * @author Jason Kerby
  */
 class AddFile {
-    static void addFile(String filePath, String indexPath, Map mIndex){
+    /**
+     * 
+     * @param indexPath Provides location of the index on the user's hdd
+     * @param mIndex A map with the file names and paths
+     * @param aList List which helps with the manipulation of the map
+     */
+    static void addFile(String indexPath, Map mIndex, ArrayList<String> aList){
+        //creates a window for the user to add selected files to the index
+        Frame addWindow = new Frame("Add Files");
+        FileDialog fd = new FileDialog(addWindow, "Add File to Index");
+        fd.setVisible(true);
+        String fileName = fd.getFile();
+        String file = fd.getDirectory();
+        //filePath combines file name and directory into a full file path
+        String filePath = file + fileName;
+        
+        //If the list contains the file, let the user know and do nothing,
+        //else add the file to the list
+        if (aList.contains(filePath)) {
+            JOptionPane.showMessageDialog(null, "File already in index!");
+        } else {
+            aList.add(filePath);
+        }
+        
         try{
+            //This whole block of code is used to write the full file path and
+            //last modified timestamp to the index
             File f = new File(filePath);
             File g = new File(indexPath);
-            File fIndex = new File("fIndex.txt");
+//            File fIndex = new File("fIndex.txt");
             //checking to see if file is already in Map
             if (!mIndex.containsKey(filePath)) {
                 mIndex.put(filePath, f.getName());
@@ -38,7 +63,6 @@ class AddFile {
             JOptionPane.showMessageDialog(null,"No such file!");
         }
     }
-
 }
 
 /**
