@@ -18,6 +18,8 @@ import java.awt.event.*;
 import javax.swing.*; // quick and easy pop-ups
 import java.io.*;
 import java.util.*;
+import java.applet.*; //search sound
+import java.net.*; //search sound
 
 class UI {
     /**
@@ -123,8 +125,11 @@ class UI {
         JTextField jtfSearch = new JTextField(30);
         JButton jbtnSearch = new JButton("Search");
         jbtnSearch.setToolTipText("Runs a search of the index.");
+        URL urlSearch = getClass().getResource("../sound/ets.wav"); //search sound
+        AudioClip search = Applet.newAudioClip(urlSearch); //search sound
         jbtnSearch.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
+                    search.play(); //search sound
                     JOptionPane.showMessageDialog(window1, "Search button Operational.");
                 }
         });
