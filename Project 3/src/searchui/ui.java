@@ -73,7 +73,11 @@ class UI {
                     JOptionPane.showMessageDialog(window1, "Update Button Operational.");
                 }
             });
-                       
+            
+            JButton clearButton = new JButton("Clear Fields");
+            clearButton.setToolTipText("Clears entered fields.");
+            clearButton.setPreferredSize(new Dimension(110, 27));
+
             JButton exitButton = new JButton("Exit");
             exitButton.setToolTipText("Exits the program.");
             exitButton.setPreferredSize(new Dimension(110, 27));
@@ -86,6 +90,7 @@ class UI {
             buttons.add(addIndexButton);
             buttons.add(removeIndexButton);
             buttons.add(updateIndexButton);
+            buttons.add(clearButton);
             buttons.add(exitButton);
             window1.add(buttons, BorderLayout.SOUTH);
         // end of button creation
@@ -177,6 +182,13 @@ class UI {
 				System.exit(0);
 			}
         });
+        //Clear search text field when clear button is clicked.... JS
+        clearButton.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    jtfSearch.setText(null);
+                    
+                }
+            });
         window1.setVisible(true);
     }
 }
