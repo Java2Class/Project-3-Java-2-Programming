@@ -50,6 +50,8 @@ class UI {
             addIndexButton.setToolTipText("Allows you to add files to the index.");
             addIndexButton.setPreferredSize(new Dimension(110, 27));
             ArrayList<String> aList = new ArrayList<String>();
+            //Populate index when button pressed JS
+            FileHandling.populateIndexList(aList);
             addIndexButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){      
                     AddFile.addFile(s, mIndex, aList);

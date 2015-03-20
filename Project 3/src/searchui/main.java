@@ -30,7 +30,8 @@ class main { //this class just has the main method
             JOptionPane.showMessageDialog(null, "Index not created.");
         }
         String s = index.getAbsolutePath();
-        Map mIndex = new HashMap();
+        Map <String, Long> mIndex = new HashMap();
+        FileHandling.populateIndexMap(mIndex);
         UI search = new UI(s, mIndex); //creates a new UI object.
     }
 }
