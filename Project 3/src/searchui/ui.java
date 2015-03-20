@@ -107,6 +107,7 @@ class UI {
         jbtnSearch.setToolTipText("Runs a search of the index.");
         URL urlSearch = getClass().getResource("../sound/ets.wav"); //search sound
         AudioClip search = Applet.newAudioClip(urlSearch); //search sound
+        //jtfSearch.getRootPane().setDefaultButton(jbtnSearch);
         jbtnSearch.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e){
