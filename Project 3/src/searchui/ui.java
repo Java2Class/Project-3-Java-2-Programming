@@ -112,6 +112,17 @@ class UI {
                     search.play(); //search sound
                     JOptionPane.showMessageDialog(window1, "Search button Operational.");
                 }
+                // @author Chris Howard
+                // This is to set the enter key to also be used when
+                // pressed instead of moving the mouse to click ok 
+                frame.getRootPane().setDefaultButton(jbtnSearch);
+                jbtnSearch listener = new jbtnSearch(jtfSearch);
+                jbtnSearch.addActionListener(listener){
+                		public void actionPerformed(ActionEvent event){
+                			String eSearch = jtfSearch.getText();
+                		}
+                }
+                
         });
         
         pSearchBar.add(jlblSearch);
