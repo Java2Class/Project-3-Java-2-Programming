@@ -174,6 +174,7 @@ class FileHandling{
                 else{
                 bw.write(entry.getKey() + " " + entry.getValue());
                 bw.newLine();
+                
                 }
             }
             bw.flush();
@@ -255,4 +256,70 @@ class FileHandling{
        
         
     }
+}
+/**
+ * This class handles updating the index when 
+ * the update index button is pressed.
+ * 
+ * @author John Silvey
+ */
+class UpdateIndex{
+    public static void updateIndex (Map mIndex, ArrayList<String> aList){
+        
+        Set<Map.Entry<String, Long>> entrySet = mIndex.entrySet();
+            for (Map.Entry<String, Long> entry: entrySet){
+                //variables with m prefix are for the map entries
+                //variables with test prefix are for testing against the map's 
+                //entries.
+                String mFileName;
+                long mLastModified;
+                String testFileName;
+                long testLastModified;
+                
+                //set variables to map record
+                mFileName = entry.getKey();
+                mLastModified = entry.getValue();
+                
+                //test to see if the file still exists on the computer
+                File f = new File(mFileName);
+                if (f.exists()){
+                    //System.out.println(f + " already exists!");
+                    //If file exists test lastmodified to make sure it is 
+                    //up to date
+                    testLastModified = f.lastModified();
+                    if (mLastModified == testLastModified){
+                        //If file is up to date do nothing
+                        //System.out.println(f + " is up to date");
+                    }
+                    else{
+                        //file not up to date remove file from map and index
+                        //add the up to date file to map and index
+                        //System.out.println(f + " is not up to date!");
+                        RemoveFile.removeFile(mIndex, aList, mFileName);
+                        //System.out.println(f + " has been removed from index.");
+                        aList.add(mFileName);
+                        mIndex.put(mFileName, f.lastModified());
+                        FileHandling.updateIndexTextFile(mIndex);
+                        JOptionPane.showMessageDialog(null,mFileName + 
+                                " has been updated");
+                        
+                        //System.out.println(f + " has been updated!");
+                    }
+                }
+                else{
+                    //The file no longer exists so it is removed from 
+                    //the map and index
+                    RemoveFile.removeFile(mIndex, aList, mFileName);
+                    JOptionPane.showMessageDialog(null, mFileName + " no longer"
+                            + " exists and has been deleted from the index.");
+                }
+                
+                
+                //System.err.println(mFileName + "" + mLastModified);
+            }
+            JOptionPane.showMessageDialog(null, "All files up to date.");
+            
+
+    } 
+    
 }
