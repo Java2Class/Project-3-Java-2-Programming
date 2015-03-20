@@ -8,7 +8,9 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
 import java.util.*;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.Scanner;
 /**
  *
  * @author Jason Kerby
@@ -36,8 +38,14 @@ class AddFile {
             JOptionPane.showMessageDialog(null, "File already in index!");
         } else {
             aList.add(filePath);
+            
         }
-        
+        //If filepath is null it wont add "nullnull" to mIndex (JS)
+        if (filePath.toString().equals("nullnull")){
+            //filePath is null do nothing
+        }
+        else{
+            //file is selected and filePath can be added to mIndex
         try{
             //This whole block of code is used to write the full file path and
             //last modified timestamp to the index
@@ -46,21 +54,14 @@ class AddFile {
 //            File fIndex = new File("fIndex.txt");
             //checking to see if file is already in Map
             if (!mIndex.containsKey(filePath)) {
-                mIndex.put(filePath, f.getName());
+                mIndex.put(filePath, f.lastModified()); //changed getname to last modified JS
             }
-            long lastModified = f.lastModified();
-            String lm = String.valueOf(lastModified);
-            System.out.println(lm);
-            BufferedWriter bw = new BufferedWriter(new FileWriter(indexPath, true));
-            bw.write(filePath);
-            bw.newLine();
-            bw.write(lm);
-            bw.newLine();
-            bw.flush();
-            bw.close();
+            //removed BufferedWriter and replaced with method to update textfile
+            FileHandling.updateIndexTextFile(mIndex);
             }
         catch(Exception e){
             JOptionPane.showMessageDialog(null,"No such file!");
+        }
         }
     }
 }
@@ -141,8 +142,117 @@ class RemoveFile {
         if (mIndex.containsKey(pathName)) {
             mIndex.remove(pathName, mIndex.get(pathName));
             aList.remove(pathName);
+            //This updates the text file by deleting all contents,
+            //and rewriting the file with the remaining items in the mIndex Map
+            FileHandling.removeFileFromIndex(mIndex);
         } else {
         }
+        
+    }
+}
+/**
+ * 
+ * @author John Silvey
+ * This class will handle reading/writing/updating the index.txt file
+ */
+class FileHandling{
+    /**
+     * 
+     * @param mIndex map of indexed file pathnames and modified dates 
+     */
+    public static void updateIndexTextFile(Map mIndex){
+        //This block of code will write the contents of the index map to the text file
+        try {
+            FileWriter fw = new FileWriter("index.txt");
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            Set<Map.Entry<String, Long>> entrySet = mIndex.entrySet();
+            for (Map.Entry<String, Long> entry: entrySet){
+                if (entry.getKey().toString().equals("nullnull")){
+                    //Do nothing
+                }
+                else{
+                bw.write(entry.getKey() + " " + entry.getValue());
+                bw.newLine();
+                }
+            }
+            bw.flush();
+            bw.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(FileHandling.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("IO Exception encountered!");
+            System.err.println(ex.getMessage());
+        }
+    }
+    /**
+     * 
+     * @param mIndex map of indexed file pathnames and modified dates
+     * @return map populated from index.txt file
+     */
+    public static Map populateIndexMap(Map mIndex){
+        //This code reads the index.txt file and populates the map
+        //when the program is started
+        try {
+            Scanner input = new Scanner(new File("index.txt"));
+            while (input.hasNext()){
+                String pathName = input.next();
+                long lastModified = input.nextLong();
+                mIndex.put(pathName, lastModified);
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FileHandling.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("File not found!");
+            System.err.println(ex.getMessage());
+        }
+       return mIndex; 
+    }
+    /**
+     * 
+     * @param aList array list of files indexed
+     * @return the populated array list from index.txt file
+     */
+    public static ArrayList populateIndexList(ArrayList<String> aList){
+        //This code reads in the index.txt file and populates the 
+        //aList so the files show up in the "remove files" list
+        try {
+            Scanner input = new Scanner(new File("index.txt"));
+            while (input.hasNext()){
+                String pathName = input.next();
+                long lastModified = input.nextLong();
+                aList.add(pathName);
+            }
+          
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FileHandling.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("File not found!");
+            System.err.println(ex.getMessage());
+        }
+       return aList; 
+    }
+    /**
+     * 
+     * @param mIndex map of indexed file pathnames and modified dates
+     */
+    public static void removeFileFromIndex(Map mIndex){
+        //This block of code will delete all contents of the index text file 
+        //and then regenerate a new list of current items in the mIndex map
+        try {       
+            FileOutputStream os = new FileOutputStream("index.txt");
+            os.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FileHandling.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("File not found");
+            System.err.println(ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(FileHandling.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("IO Exception");
+            System.err.println(ex.getMessage());
+        }
+        //This will repopulate the list with the contents of the mIndex Map
+        FileHandling.updateIndexTextFile(mIndex);
+       
         
     }
 }
