@@ -27,7 +27,7 @@ class UI {
      * @param s the absolute path of the index
      * @param mIndex map that stores the file names and path names
      */
-    UI(String s, Map mIndex) {
+    UI(String s, Map mIndex, ArrayList<String> aList) {
         //main window for search UI
         Frame window1 = new Frame("eXtreme Team Search");
         window1.setSize(960,600);
@@ -49,9 +49,6 @@ class UI {
             JButton addIndexButton = new JButton("Add Files");
             addIndexButton.setToolTipText("Allows you to add files to the index.");
             addIndexButton.setPreferredSize(new Dimension(110, 27));
-            ArrayList<String> aList = new ArrayList<String>();
-            //Populate index when button pressed JS
-            FileHandling.populateIndexList(aList);
             addIndexButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){      
                     AddFile.addFile(s, mIndex, aList);
@@ -72,7 +69,7 @@ class UI {
             updateIndexButton.setPreferredSize(new Dimension(110, 27));
             updateIndexButton.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
-                    JOptionPane.showMessageDialog(window1, "Update Button Operational.");
+                    UpdateIndex.updateIndex(mIndex, aList);
                 }
             });
             
@@ -193,6 +190,8 @@ class UI {
                 }
             });
         window1.setVisible(true);
+        //once window is visible update the index
+        UpdateIndex.updateIndex(mIndex, aList);
     }
 }
 /**
