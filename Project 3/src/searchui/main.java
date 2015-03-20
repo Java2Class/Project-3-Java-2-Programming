@@ -32,6 +32,9 @@ class main { //this class just has the main method
         String s = index.getAbsolutePath();
         Map <String, Long> mIndex = new HashMap();
         FileHandling.populateIndexMap(mIndex);
-        UI search = new UI(s, mIndex); //creates a new UI object.
+        ArrayList<String> aList = new ArrayList<>();
+        FileHandling.populateIndexList(aList);
+        
+        UI search = new UI(s, mIndex, aList); //creates a new UI object.
     }
 }
