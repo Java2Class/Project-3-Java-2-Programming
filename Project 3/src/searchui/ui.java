@@ -42,6 +42,7 @@ class UI {
         
         //sets custom icon for application
         window1.setIconImage(image.getImage());
+       
         
         //all of the buttons needed
         JPanel buttons = new JPanel();
@@ -178,7 +179,8 @@ class UI {
         buttons.setBackground(Color.WHITE);
         pSearchBar.setBackground(Color.WHITE);
         
-        //Directions Frame
+        //********************************************************
+        //Create Directions Frame for instructions or help
         JFrame window2 = new JFrame("eXtreme Team Search Directions");
         window2.setSize(960,600);
         window2.setLocationRelativeTo(null);
@@ -213,6 +215,7 @@ class UI {
         window2.add(dTitle, BorderLayout.CENTER);
         window2.add(buttons2, BorderLayout.SOUTH);
          
+        //********************************************************
         //MenuBar Setup
         JMenuBar menuBar = new JMenuBar();
         
