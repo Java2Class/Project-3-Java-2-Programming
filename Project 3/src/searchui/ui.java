@@ -108,29 +108,16 @@ class UI {
         URL urlSearch = getClass().getResource("../sound/ets.wav"); //search sound
         AudioClip search = Applet.newAudioClip(urlSearch); //search sound
         jbtnSearch.addActionListener(new ActionListener(){
+                @Override
                 public void actionPerformed(ActionEvent e){
                     search.play(); //search sound
-                    JOptionPane.showMessageDialog(window1, "Search button Operational.");
+                    SearchString.setString(jtfSearch.getText()); //saves string from user's input
                 }
-
-//commented out Chris' code until it's fixed - Jay                
-/*                // @author Chris Howard
-                // This is to set the enter key to also be used when
-                // pressed instead of moving the mouse to click ok 
-                frame.getRootPane().setDefaultButton(jbtnSearch);
-                jbtnSearch listener = new jbtnSearch(jtfSearch);
-                jbtnSearch.addActionListener(listener){
-                		public void actionPerformed(ActionEvent event){
-                			String eSearch = jtfSearch.getText();
-                		}
-                }
-*/                
         });
         
         pSearchBar.add(jlblSearch);
         pSearchBar.add(jtfSearch);
         pSearchBar.add(jbtnSearch);
-        
         //************************************************************
         //Create Panel For Buttons
         JPanel pRadioButtons = new JPanel();
@@ -203,5 +190,36 @@ class UI {
                 }
             });
         window1.setVisible(true);
+    }
+}
+/**
+ * 
+ * @author Jair Garcia-Varela
+ */
+class SearchString {
+    private static String search;
+    /**
+     * 
+     * @param s The String input into the search box
+     * @throws Exception
+     */
+    static void setString(String s) {
+        if (s.equals("")) {
+            JOptionPane.showMessageDialog(null, "NO search word entered.");
+        } else {
+            search = s;
+        }
+    }
+    /**
+     * 
+     * @return String from the search box
+     */
+    static String getString() {
+        
+        if (search.isEmpty()) {
+            return "";
+        } else {
+            return search;
+        }
     }
 }
