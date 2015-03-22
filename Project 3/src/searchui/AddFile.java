@@ -97,7 +97,7 @@ class RemoveFile {
         Frame removeWindow = new Frame("Remove Files"); //new window
         Panel removeCancel = new Panel(new GridLayout(5, 3)); //button panel
         JButton btnRemove = new JButton("Remove");
-        JButton btnCancel = new JButton("Cancel");
+        JButton btnCancel = new JButton("Close");
 
         //placement ofthe buttons
         for (int i = 0; i < 4; i++) {
