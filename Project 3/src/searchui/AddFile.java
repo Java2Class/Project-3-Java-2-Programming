@@ -124,7 +124,7 @@ class RemoveFile {
                 } else {
                     JOptionPane.showMessageDialog(null, removeList.getSelectedItem() + " was removed from the index.");
                     removeFile(mIndex, aList, removeList.getSelectedItem());
-                    removeWindow.setVisible(false);
+                    removeList.remove(removeList.getSelectedItem());
                 }
             }
         });
