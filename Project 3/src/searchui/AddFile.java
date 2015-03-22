@@ -82,6 +82,7 @@ class RemoveFile {
     //creating a new window for a file chooser
         //the file chooser enables the user to select the files wanted to be removed
         java.awt.List removeList = new java.awt.List();
+        removeList.setMultipleMode(true);
 
         //adding entries to the new window for each item in the index
         for (int i = 0; i < aList.size(); i++) {
@@ -119,12 +120,16 @@ class RemoveFile {
         btnRemove.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //won't remove an item unless something is selected
-                if (removeList.getSelectedItem() == null) {
+                if (removeList.getSelectedItems() == null) {
                     JOptionPane.showMessageDialog(null, "No item was selected.");
                 } else {
-                    JOptionPane.showMessageDialog(null, removeList.getSelectedItem() + " was removed from the index.");
-                    removeFile(mIndex, aList, removeList.getSelectedItem());
-                    removeList.remove(removeList.getSelectedItem());
+                    //removes all the files selected
+                    String[] selections = removeList.getSelectedItems();
+                    for (int i = 0; i < selections.length; i++) {
+                        JOptionPane.showMessageDialog(null, selections[i] + " was removed from the index.");
+                        removeFile(mIndex, aList, selections[i]);
+                        removeList.remove(selections[i]);
+                    }
                 }
             }
         });
