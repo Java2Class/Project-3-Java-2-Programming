@@ -37,9 +37,10 @@ class AddFile {
 
         //If the list contains the file, let the user know and do nothing,
         //else add the file to the list
-        if (aList.contains(filePath)) {
+        if (aList.contains(filePath))
             JOptionPane.showMessageDialog(null, "File already in index!");
-        } else {
+        else if(fileName==null){}
+        else{
             aList.add(filePath);
             JOptionPane.showMessageDialog(addWindow, fileName + " was added to the index.");
         }
@@ -53,9 +54,8 @@ class AddFile {
                 //last modified timestamp to the index
                 File f = new File(filePath);
                 File g = new File(indexPath);
-//            File fIndex = new File("fIndex.txt");
                 //checking to see if file is already in Map
-                if (!mIndex.containsKey(filePath)) {
+                if (!mIndex.containsKey(filePath)){
                     mIndex.put(filePath, f.lastModified()); //changed getname to last modified JS
                 }
                 //removed BufferedWriter and replaced with method to update textfile
