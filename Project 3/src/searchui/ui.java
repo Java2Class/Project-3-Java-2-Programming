@@ -198,8 +198,13 @@ class UI {
             }
         });
         window1.setVisible(true);
-        //once window is visible update the index
-        UpdateIndex.updateIndex(mIndex, aList);
+        //once window is visible update the index if there are files stored
+        if (mIndex.isEmpty()){
+            //Do nothing
+        }
+        else{
+            UpdateIndex.updateIndex(mIndex, aList);
+        }
     }
 }
 
