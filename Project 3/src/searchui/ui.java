@@ -115,12 +115,19 @@ class UI {
         jbtnSearch.setToolTipText("Runs a search of the index.");
         URL urlSearch = getClass().getResource("../sound/ets.wav"); //search sound
         AudioClip search = Applet.newAudioClip(urlSearch); //search sound
-        //jtfSearch.getRootPane().setDefaultButton(jbtnSearch);
+        /*
+         * @Chris Howard
+         *Removed the getRootPane() line, wasn't working properly
+         *the enter key should be linked to the text field by default
+         *added the eSearch variable to the ActionListener to get the text
+         *from the text field and place it in the variable for later use.
+         */
         jbtnSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 search.play(); //search sound
                 SearchString.setString(jtfSearch.getText()); //saves string from user's input
+                String eSearch = jtfSearch.getText(); // Should save the text to a string variable.
             }
         });
 
