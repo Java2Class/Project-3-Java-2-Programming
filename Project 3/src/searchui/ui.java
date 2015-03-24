@@ -30,7 +30,7 @@ class UI {
      */
     UI(String s, Map mIndex, ArrayList<String> aList) {
         //main window for search UI
-        Frame window1 = new Frame("eXtreme Team Search");
+        JFrame window1 = new JFrame("eXtreme Team Search");
         window1.setSize(960, 600);
         window1.setLocationRelativeTo(null);
 
@@ -187,6 +187,198 @@ class UI {
         buttons.setBackground(Color.WHITE);
         pSearchBar.setBackground(Color.WHITE);
 
+        //********************************************************
+         //Create Directions Frame for instructions or help
+        JFrame window2 = new JFrame("eXtreme Team Search Directions");
+        window2.setSize(960,600);
+        window2.setLocationRelativeTo(null);
+        
+        ImageIcon image2 = new ImageIcon(getClass().getResource("../images/EXTS.png"));
+        JLabel logo2 = new JLabel(image2);
+        
+        window2.setIconImage(image2.getImage());
+        
+        JPanel buttons2 = new JPanel();
+            buttons2.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        
+            JButton okButton = new JButton("OK");
+            okButton.setToolTipText("Exit the Directions menu.");
+            okButton.setPreferredSize(new Dimension(110, 27));
+            okButton.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){      
+                    window2.dispose();
+                }
+            });
+        buttons2.add(okButton);    
+        
+        JPanel dTitle = new JPanel();
+        dTitle.setLayout(new BorderLayout());
+        
+        //title
+        JLabel dText = new JLabel("                                        "
+                + "                             Directions"); 
+        dText.setFont(new Font("Serif",Font.BOLD, 24));
+        
+        //reading Text File
+        JTextArea dCore = new JTextArea(5,20);
+        try {
+            dCore.read(new InputStreamReader(
+                    getClass().getResourceAsStream("../text/DIRECT.txt")),
+                    null);
+        } catch (IOException e) {
+            dCore = new JTextArea("No File Found"); 
+        }
+        dCore.setFont(new Font("Monospaced",Font.BOLD, 14));
+        dCore.setCaretPosition(dCore.getDocument()
+				.getLength());
+        dCore.setEditable(false);
+        dCore.setLineWrap(true);
+        dCore.setWrapStyleWord(true);
+        JScrollPane dScrollPane = new JScrollPane(dCore,
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        
+        //Adds Footer to South End
+        JLabel dSigniture = new JLabel ("                                    "
+                + "                                                          "
+                + "                                   eXtreme Team Search \u00a9 2015" );
+      
+        //Adds frame to East and West sides so JTextArea box is smaller
+        JLabel dWest = new JLabel ("                                 |");
+        dWest.setForeground(Color.LIGHT_GRAY.brighter());
+        JLabel dEast = new JLabel ("|                                 ");
+        dEast.setForeground(Color.LIGHT_GRAY.brighter());
+        
+        //Displays all the items
+        dTitle.add(dText, BorderLayout.NORTH);
+        dTitle.add(dWest, BorderLayout.WEST);
+        dTitle.add(dEast, BorderLayout.EAST);
+        dTitle.add(dScrollPane, BorderLayout.CENTER);
+        dTitle.add(buttons2, BorderLayout.SOUTH);
+        window2.add(logo2, BorderLayout.NORTH);
+        window2.add(dTitle, BorderLayout.CENTER);
+        window2.add(dSigniture, BorderLayout.SOUTH);
+       
+      
+         
+        //********************************************************
+        //MenuBar Setup
+        JMenuBar menuBar = new JMenuBar();
+        
+            //Menu Item 1 - File
+            JMenu file = new JMenu("File");
+            file.setMnemonic(KeyEvent.VK_F);
+              
+                //Add Files Menu
+                JMenuItem addIndexMenu = new JMenuItem("Add");
+                addIndexMenu.setMnemonic(KeyEvent.VK_A);
+                addIndexMenu.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, 
+                        ActionEvent.CTRL_MASK));
+                addIndexMenu.setToolTipText("Allows you to add files to the index.");
+                addIndexMenu.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent e){      
+                        AddFile.addFile(s, mIndex, aList);
+                    }
+                }); 
+                addIndexMenu.setHorizontalTextPosition(JMenuItem.RIGHT);
+                file.add(addIndexMenu);
+        
+                //Remove Files Menu
+                JMenuItem removeIndexMenu = new JMenuItem("Remove");
+                removeIndexMenu.setMnemonic(KeyEvent.VK_R);
+                removeIndexMenu.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, 
+                        ActionEvent.CTRL_MASK));
+                removeIndexMenu.setToolTipText("Allows you to remove a file from the index.");
+                removeIndexMenu.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        RemoveFile.removeFile(mIndex, aList);
+                    }
+                });
+                removeIndexMenu.setHorizontalTextPosition(JMenuItem.RIGHT);
+                file.add(removeIndexMenu);
+                       
+                //View Index Menu
+                JMenuItem viewIndexMenu = new JMenuItem("View");
+                viewIndexMenu.setMnemonic(KeyEvent.VK_V);
+                viewIndexMenu.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, 
+                        ActionEvent.CTRL_MASK));
+                viewIndexMenu.setToolTipText("Allows you to view the files in the index.");
+                viewIndexMenu.setPreferredSize(new Dimension(110, 27));
+                viewIndexMenu.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        ViewIndex.viewIndex(mIndex);
+                    }
+                });
+                viewIndexMenu.setHorizontalTextPosition(JMenuItem.RIGHT);
+                file.add(viewIndexMenu);
+                
+                //Update Menu     
+                JMenuItem updateIndexMenu = new JMenuItem("Update");
+                updateIndexMenu.setMnemonic(KeyEvent.VK_U);
+                updateIndexMenu.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, 
+                        ActionEvent.CTRL_MASK));
+                updateIndexMenu.setToolTipText("Allows you to update the index.");
+                updateIndexMenu.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                          UpdateIndex.updateIndex(mIndex, aList);
+                    }
+                });
+                updateIndexMenu.setHorizontalTextPosition(JMenuItem.RIGHT);
+                file.add(updateIndexMenu);
+                
+                //Clear
+                JMenuItem clearIndexMenu = new JMenuItem("Clear");
+                clearIndexMenu.setMnemonic(KeyEvent.VK_C);
+                clearIndexMenu.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, 
+                        ActionEvent.CTRL_MASK));
+                clearIndexMenu.setToolTipText("Clears entered fields.");
+                clearIndexMenu.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        JOptionPane.showMessageDialog(window1, "Clear Menu Operational.");
+                    }
+                });
+                clearIndexMenu.setHorizontalTextPosition(JMenuItem.RIGHT);
+                file.add(clearIndexMenu);
+                
+                //Exit
+                JMenuItem quitMenu = new JMenuItem("Quit");
+                quitMenu.setMnemonic(KeyEvent.VK_Q);
+                quitMenu.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 
+                        ActionEvent.CTRL_MASK));
+                quitMenu.setToolTipText("Exits the program.");
+                quitMenu.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e){
+                        System.exit(0);
+                    }
+                });
+                quitMenu.setHorizontalTextPosition(JMenuItem.RIGHT);
+                file.add(quitMenu);
+            //end of Menu Item 1  
+            
+            //Menu Item 2 - Help
+            JMenu help = new JMenu("Help");
+            help.setMnemonic(KeyEvent.VK_H); 
+            
+                //Directions
+                JMenuItem dirMenu = new JMenuItem("Directions");
+                dirMenu.setMnemonic(KeyEvent.VK_D);
+                dirMenu.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, 
+                        ActionEvent.CTRL_MASK));
+                dirMenu.setToolTipText("Opens the Directions window.");
+                dirMenu.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e){
+                        window2.setVisible(true);
+                    }
+                });
+                dirMenu.setHorizontalTextPosition(JMenuItem.RIGHT);
+                help.add(dirMenu);
+            //end of Menu Item 2 
+                
+        //adding menus to menubar        
+        menuBar.add(file);
+        menuBar.add(help);
+        window1.setJMenuBar(menuBar);
+        
         //*********************************************************
         //Add Search Panel to Main Window in Center Position and logo in North
         window1.add(logo, BorderLayout.NORTH);
