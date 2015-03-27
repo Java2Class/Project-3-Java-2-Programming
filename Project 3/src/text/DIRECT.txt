@@ -1,0 +1,90 @@
+******************************************************************************************         
+                         Thank you for using the eXtreme Team Search!
+
+       This is the information guide to help answer any questions you have about our 
+   using our application.
+
+   CHAPTERS
+   1. GETTING STARTED
+      - Add Files
+      - Remove Files
+      - View Files
+      - Update Files
+    
+   2. USING THE SEARCH
+      - Search ANY term
+      - Search ALL terms
+      - Search EXACT phrase
+      - Clear Fields
+
+
+
+   1. GETTING STARTED -
+
+       In order for a search to be done, you must set the source file(s). The source
+   file(s)is a file (or files) that the eXtreme Team Search program will investigate 
+   in order to find whatever it is you are looking for. You can either use the "File" 
+   tab in menu bar or the buttons at the bottom of the screen to start setting up your 
+   source file(s). 
+    
+        - Add Files -
+            This option will open a menu to help you locate the file(s) you wish to
+        use as your search source. You can add as many files as you wish, but be 
+        aware the "Search ANY Term" may only bring up one of the files if found.
+
+        - Remove Files -
+            This task will remove any file(s) from the search option. If you added
+        a file by mistake, or wish to exclude it, you can remove it as a source.
+
+        - View Files -
+            If you wish to view what source(s) you have for a search, you can click
+        the "View Files" button. This will bring up a menu that will show you what
+        your current source(s) are for the search.
+
+        - Update Files -
+            By clicking this button, you will update any file(s) you may have edited.
+        This will help make your file(s) current to use for the search.
+
+
+
+   2. USING THE SEARCH -
+
+       You can use the Search Menu to search your computer for any files you wish.
+   Please enter the name of the file you wish to get and select search. Now be aware
+   that each search function will bring up different items. Please, be aware you MUST 
+   locate a source for the search first, which will be listed under the "GETTING STARTED"
+   section.
+
+        - Search ANY Term -
+            This option will look at files names individually. For example, the
+        search option "run all night" Will look for "run", "all", "night" whenever 
+        they are found, together in one word or not. So this can bring up the file
+        "run in the morning", "all the people of the world", "Silent Night". It is
+        also possible if you use multiple files, this option will ONLY locate the
+        word in one of the files, not both.
+
+        - Search ALL Terms -
+            This option will look at files in which has all the words within it.
+        For example, "run all night" will locate only the files that has all three
+        files in it; however, it can be in any order like "the night all people run".
+        With this option, the search will locate ANY word in ANY files, recording 
+        all files it is found in. This option is best used if you wish to see all
+        the results in any file, as opposed to just one file.
+
+        - Search Exact Phrase - 
+            This option will look for the exact phrase in that order. So, "run all
+        night" will produce only files that has "run all night" in it in that exact 
+        order. This option should be used for exact searches.
+
+       *By clicking the "search" button, your computer will begin it's search for the
+   file*
+
+        - Clear Fields -
+            This will clear the current items in the search bar for a clear erase.
+        Please do not be confused with the "Remove Files" button. This will not 
+        remove all files at once, but just a quick way to erase the search bar box.
+
+
+
+            If you have any more questions, please look at our FAQS page on 
+                  "www.extremeTeamSearchFAQS.net" for more information.

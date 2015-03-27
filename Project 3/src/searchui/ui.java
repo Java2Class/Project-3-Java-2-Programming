@@ -225,7 +225,7 @@ class UI {
             dCore.read(new InputStreamReader(
                     getClass().getResourceAsStream("../text/DIRECT.txt")),
                     null);
-        } catch (IOException e) {
+        } catch (Exception e) {
             dCore = new JTextArea("No File Found"); 
         }
         dCore.setFont(new Font("Monospaced",Font.BOLD, 14));
