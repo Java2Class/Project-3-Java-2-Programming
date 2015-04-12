@@ -154,7 +154,7 @@ class UI {
         
         // I had to move this action listener so I can refer to the radio buttons
         // This listener will now direct the user to the SearchManager class, which will
-        // handle the searching of the files in the index.  -Kerb
+        // handle the searching of the files in the index.  -Kerb 
         jbtnSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
