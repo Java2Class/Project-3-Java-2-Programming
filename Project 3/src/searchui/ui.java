@@ -115,21 +115,6 @@ class UI {
         jbtnSearch.setToolTipText("Runs a search of the index.");
         URL urlSearch = getClass().getResource("../sound/ets.wav"); //search sound
         AudioClip search = Applet.newAudioClip(urlSearch); //search sound
-        /*
-         * @Chris Howard
-         *Removed the getRootPane() line, wasn't working properly
-         *the enter key should be linked to the text field by default
-         *added the eSearch variable to the ActionListener to get the text
-         *from the text field and place it in the variable for later use.
-         */
-        jbtnSearch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                search.play(); //search sound
-                SearchString.setString(jtfSearch.getText()); //saves string from user's input
-                String eSearch = jtfSearch.getText(); // Should save the text to a string variable.
-            }
-        });
 
         pSearchBar.add(jlblSearch);
         pSearchBar.add(jtfSearch);
@@ -143,21 +128,18 @@ class UI {
         jrbAll.setToolTipText("Performs an AND search, searching all terms.");
         jrbAll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(window1, "All Radio Button Operational.");
             }
         });
         JRadioButton jrbAny = new JRadioButton("Search ANY Term", true);
         jrbAny.setToolTipText("Performs an OR search, searching any terms.");
         jrbAny.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(window1, "Any Radio Button Operational.");
             }
         });
         JRadioButton jrbExact = new JRadioButton("Search Exact Phrase");
         jrbExact.setToolTipText("Performs a search containing the exact phrase entered.");
         jrbExact.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(window1, "Exact radio Button Operational.");
             }
         });
         //Add Radio Buttons To Group
@@ -169,6 +151,27 @@ class UI {
         pRadioButtons.add(jrbAny);
         pRadioButtons.add(jrbAll);
         pRadioButtons.add(jrbExact);
+        
+        // I had to move this action listener so I can refer to the radio buttons
+        // This listener will now direct the user to the SearchManager class, which will
+        // handle the searching of the files in the index.  -Kerb
+        jbtnSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                search.play(); //search sound
+                SearchString.setString(jtfSearch.getText()); //saves string from user's input
+                String eSearch = jtfSearch.getText(); // Should save the text to a string variable.
+                if(jrbAll.isSelected()){
+                    SearchManager.determineSearch(eSearch, -1);
+                }
+                else if(jrbAny.isSelected()){
+                    SearchManager.determineSearch(eSearch, 0);
+                }
+                else{
+                    SearchManager.determineSearch(eSearch, 1);
+                }
+            }
+        });
 
         //********************************************************
         //Create Panel to Combine Search Bar and Search Button Panels
