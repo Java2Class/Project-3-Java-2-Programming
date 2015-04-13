@@ -160,16 +160,12 @@ class UI {
             public void actionPerformed(ActionEvent e) {
                 search.play(); //search sound
                 SearchString.setString(jtfSearch.getText()); //saves string from user's input
-                String eSearch = jtfSearch.getText(); // Should save the text to a string variable.
-                if(jrbAll.isSelected()){
-                    SearchManager.determineSearch(eSearch, -1);
-                }
-                else if(jrbAny.isSelected()){
-                    SearchManager.determineSearch(eSearch, 0);
-                }
-                else{
-                    SearchManager.determineSearch(eSearch, 1);
-                }
+                if(jrbAll.isSelected())
+                    SearchManager.determineSearch(-1, aList);
+                else if(jrbAny.isSelected())
+                    SearchManager.determineSearch(0, aList);
+                else
+                    SearchManager.determineSearch(1, aList);
             }
         });
 

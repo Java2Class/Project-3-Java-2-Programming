@@ -9,6 +9,7 @@ import java.text.*;
 import java.util.Locale;
 import java.util.*;
 import java.io.*;
+import javax.swing.*;
 
 
 /**
@@ -26,28 +27,31 @@ public class SearchManager {
      *                    1: An EXACT search
      * @param aList An array list used to identify files in the index for searching
      */
-    static void determineSearch(String userInput, int searchType, ArrayList<String> aList){
-    //TESTING//   System.out.println(userInput);
+    static void determineSearch(int searchType, ArrayList<String> aList){
     //TESTING//    System.out.println(searchType);
-        
-        String normalizedString = normalizeString(userInput);
-    //TESTING//    System.out.println(normalizedString);  
-    
     //TESTING//    System.out.println(aList);
-
-        if(searchType == -1)
-            allSearch(normalizedString, aList);
-        else if(searchType == 0)
-            anySearch(normalizedString, aList);
-        else
-            exactSearch(normalizedString,aList);         
+     
+        try {
+            String normalizedString = normalizeString();
+    //TESTING//            System.out.println(normalizedString);  
+            if (searchType == -1) {
+                allSearch(normalizedString, aList);
+            } else if (searchType == 0) {
+                anySearch(normalizedString, aList);
+            } else {
+                exactSearch(normalizedString, aList);
+            }
+        } catch (Exception e) {
+            JFrame errorFrame = new JFrame();
+                JOptionPane.showMessageDialog(errorFrame, "Please enter a search string!");
+        }
     } 
    
     //normalizes the string entered by the user
-    static String normalizeString(String userInput){
-        userInput = Normalizer.normalize(userInput, Normalizer.Form.NFKC);
+    static String normalizeString(){
+        String normalizedString = Normalizer.normalize(SearchString.getString(), Normalizer.Form.NFKC);
     //TESTING//    userInput = userInput.replaceAll("[^\\p{IsAlphabetic}\\p{Digit}]", "");   
-        return userInput;
+        return normalizedString;
     }
     
     //performs an all search
