@@ -42,11 +42,10 @@ public class SearchManager {
         }
     }
 
-    //normalizes the string entered by the user
+    //normalizes the string entered by the user and converts it to lower case for easier searching
     static String normalizeString() {
-        String normalizedString = Normalizer.normalize(SearchString.getString(), Normalizer.Form.NFKC);
+        String normalizedString = Normalizer.normalize(SearchString.getString().toLowerCase(), Normalizer.Form.NFKC);
         //TESTING// normalizedString = normalizedString.replaceAll("[^\\p{IsAlphabetic}\\p{Digit}]", "");
-        //TESTING//    System.out.println(normalizedString);
         return normalizedString;
     }
 
@@ -54,7 +53,6 @@ public class SearchManager {
     static ArrayList<String> indexReader(int indexNumber, ArrayList<String> aList) {
         String s = new String(aList.get(indexNumber));
         ArrayList<String> list = new ArrayList<>();
-
         try {
             Scanner scanner = new Scanner(new File(s));
             while (scanner.hasNext()) {
@@ -64,9 +62,10 @@ public class SearchManager {
         } catch (Exception e) {
             System.out.println("No such file!");
         }
+
         return list;
     }
-    
+
     //performs an all(AND) search
     static void allSearch(ArrayList<String> aList) {
 
@@ -74,15 +73,44 @@ public class SearchManager {
 
     //performs an any(OR) search
     static void anySearch(ArrayList<String> aList) {
+        //StringBuilder for a popup menu which shows at the end of the search.
+        StringBuilder results = new StringBuilder();
+        //ArrayList which will contain the paths of index files
         ArrayList<String> contents = new ArrayList<>();
+        //Calls the normalizeString method to normalize the string.
         String inputString = normalizeString();
+        
+        //Populates an ArrayList with the input given by the user
+        Scanner scanner = new Scanner(inputString);
+        ArrayList<String> modifiedInput = new ArrayList<>();
+        while (scanner.hasNext()) {
+            modifiedInput.add(scanner.next());
+        }
+
+        //The functionality of the method.  If anything the user types is found, it will be
+        //returned
         for (int i = 0; i < aList.size(); i++) {
             contents = indexReader(i, aList);
-                if(contents.contains(inputString))
-                    System.out.printf("Found in file %s!\n", aList.get(i));
+            for (int j = 0; j < modifiedInput.size(); j++) {
+                String testString = modifiedInput.get(j);
+                if (contents.contains(testString)) {
+                    results.append("Search term found in file: " + aList.get(i) + "!\n");;
+                    break;
+                }
             }
-
         }
+        
+        //JOPtionPane which presents the user with a list of matches or a window which
+        //tells them that the program couldn't find anything.
+        if(results.length() < 1){
+            JFrame resultsFrame = new JFrame("Sorry!");
+            JOptionPane.showMessageDialog(resultsFrame, "No applicable file found.");
+        }
+        else{
+            JFrame resultsFrame = new JFrame("Awesome!");
+            JOptionPane.showMessageDialog(resultsFrame, results, "Awesome!", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
     //performs an exact(PHRASE) search
     static void exactSearch(ArrayList<String> aList) {
