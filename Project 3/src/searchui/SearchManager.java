@@ -94,7 +94,7 @@ public class SearchManager {
             for (int j = 0; j < modifiedInput.size(); j++) {
                 String testString = modifiedInput.get(j);
                 if (contents.contains(testString)) {
-                    results.append("Search term found in file: " + aList.get(i) + "!\n");;
+                    results.append("Search term found in file: " + aList.get(i) + "!\n");
                     break;
                 }
             }
