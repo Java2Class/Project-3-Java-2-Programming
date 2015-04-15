@@ -45,31 +45,28 @@ public class SearchManager {
     //normalizes the string entered by the user
     static String normalizeString() {
         String normalizedString = Normalizer.normalize(SearchString.getString(), Normalizer.Form.NFKC);
-        //TESTING//    userInput = userInput.replaceAll("[^\\p{IsAlphabetic}\\p{Digit}]", "");   
+        //TESTING// normalizedString = normalizedString.replaceAll("[^\\p{IsAlphabetic}\\p{Digit}]", "");
+        //TESTING//    System.out.println(normalizedString);
         return normalizedString;
     }
 
     //this is mainly a test method that reads in the contents of all files in the index
-    static void indexReader(ArrayList<String> aList) {
-        for (int i = 0; i < aList.size(); i++) {
-            //TESTING//   System.out.println(aList.get(i).toString());
-            String s = new String(aList.get(i));
-            File indexedFile = new File(s);
-            BufferedReader inputStream = null;
-            try{
-                inputStream = new BufferedReader(new FileReader(indexedFile));
-                String contents;
-                while((contents = inputStream.readLine())!=null){
-            //TESTING//        System.out.println(contents);
-                }
+    static ArrayList<String> indexReader(int indexNumber, ArrayList<String> aList) {
+        String s = new String(aList.get(indexNumber));
+        ArrayList<String> list = new ArrayList<>();
+
+        try {
+            Scanner scanner = new Scanner(new File(s));
+            while (scanner.hasNext()) {
+                list.add(scanner.next());
             }
-            catch(Exception e){
-            //TESTING//
-            }
+            scanner.close();
+        } catch (Exception e) {
+            System.out.println("No such file!");
         }
+        return list;
     }
     
-
     //performs an all(AND) search
     static void allSearch(ArrayList<String> aList) {
 
@@ -77,9 +74,15 @@ public class SearchManager {
 
     //performs an any(OR) search
     static void anySearch(ArrayList<String> aList) {
+        ArrayList<String> contents = new ArrayList<>();
         String inputString = normalizeString();
-    //TESTING//    System.out.println(inputString);
-    }
+        for (int i = 0; i < aList.size(); i++) {
+            contents = indexReader(i, aList);
+                if(contents.contains(inputString))
+                    System.out.printf("Found in file %s!\n", aList.get(i));
+            }
+
+        }
 
     //performs an exact(PHRASE) search
     static void exactSearch(ArrayList<String> aList) {
