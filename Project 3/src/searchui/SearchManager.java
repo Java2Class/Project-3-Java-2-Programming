@@ -111,7 +111,8 @@ public class SearchManager {
         }
     }
 
-    //performs an exact(PHRASE) search - Jair Garcia-Varela
+    //performs an exact(PHRASE) search
+    //@author Jair Garcia-Varela
     static void exactSearch(ArrayList<String> aList) {
         //StringBuilder for a popup menu which shows at the end of the search.
         StringBuilder results = new StringBuilder();
@@ -132,7 +133,7 @@ public class SearchManager {
             int k = 0, found = 0;
             contents = indexReader(i, aList);//file contents
             for (int j = 0; j < modifiedInput.size(); j++, k++) {
-                while (k < contents.size()) {
+                while (k < contents.size()) {//checks to see if we reached end of file contents
                     if (contents.get(k).equalsIgnoreCase(modifiedInput.get(j))) {//checks to see if words are the same
                         found++;
                         if (found == modifiedInput.size()) {//checks to make sure all the entered items have been found in order and it is the end of inputstring
