@@ -6,7 +6,6 @@
 package searchui;
 
 import java.text.*;
-import java.util.Locale;
 import java.util.*;
 import java.io.*;
 import javax.swing.*;
@@ -19,8 +18,6 @@ public class SearchManager {
 
     /**
      *
-     * @param userInput A string containing the text entered in the UI text
-     * field
      * @param searchType An int which determines the type of search you want to
      * do: -1: An ALL search 0: An ANY search 1: An EXACT search
      * @param aList An array list used to identify files in the index for
@@ -50,6 +47,7 @@ public class SearchManager {
     }
 
     //this is mainly a test method that reads in the contents of all files in the index
+    //@author Jason Kerby
     static ArrayList<String> indexReader(int indexNumber, ArrayList<String> aList) {
         String s = new String(aList.get(indexNumber));
         ArrayList<String> list = new ArrayList<>();
@@ -75,8 +73,8 @@ public class SearchManager {
         //Calls the normalizeString method to normalize the string.
         String inputString = normalizeString();
         //copy aList to another arrayList for testing
-        ArrayList<String> aListCopy = new ArrayList<>(); 
-        
+        ArrayList<String> aListCopy = new ArrayList<>();
+
         //copy aList into duplicate array so the actual index is not deleted
         for(int i =0; i< aList.size();i++){
             aListCopy.set((i), aList.get(i));
@@ -89,7 +87,7 @@ public class SearchManager {
         while (scanner.hasNext()) {
             modifiedInput.add(scanner.next());
         }
-
+        
         //The functionality of the method. The file must contain ALL words in the 
         //search. If any single word is missing the file is deleted from the copied index
         
@@ -104,18 +102,18 @@ public class SearchManager {
                 //if a search word is not found discard that file from the copy array
                 if (!contents.contains(testString)){
                     aListCopy.remove(i); 
-                }
+                        }
                 //increment to go to next word in search string
                 j++;               
-            }            
+                    }
             
-        }
+                }
         //this is just debugging code to see which files are left in the copied index
         for(int i = 0; i< aListCopy.size(); i++)
         {
         JOptionPane.showMessageDialog(null,aListCopy.get(i));
-        }
-        
+            }
+
         //  Code below is not yet working
 
         //JOPtionPane which presents the user with a list of matches or a window which
@@ -131,6 +129,7 @@ public class SearchManager {
     }
 
     //performs an any(OR) search
+    //@author Jason Kerby
     static void anySearch(ArrayList<String> aList) {
         //StringBuilder for a popup menu which shows at the end of the search.
         StringBuilder results = new StringBuilder();
