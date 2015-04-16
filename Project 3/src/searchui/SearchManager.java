@@ -128,21 +128,21 @@ public class SearchManager {
         }
 
         //The functionality of the method. If all items in order are found, returns result. if not found in order, no file returned
-        for (int i = 0; i < aList.size(); i++) {
+        for (int i = 0; i < aList.size(); i++) {//loops through all the files in the index
             int k = 0, found = 0;
-            contents = indexReader(i, aList);
+            contents = indexReader(i, aList);//file contents
             for (int j = 0; j < modifiedInput.size(); j++, k++) {
                 while ((k + 1) < contents.size()) {
-                    if (contents.get(k).equalsIgnoreCase(modifiedInput.get(j))) {
+                    if (contents.get(k).equalsIgnoreCase(modifiedInput.get(j))) {//checks to see if words are the same
                         found++;
-                        if (found == modifiedInput.size()) {
-                            JOptionPane.showMessageDialog(null, found+" "+modifiedInput.size()+"");
-                            results.append("Search term found in file: " + aList.get(i) + "!\n");
+                        if (found == modifiedInput.size()) {//checks to make sure all the entered items have been found in order and it is the end of inputstring
+                            //JOptionPane.showMessageDialog(null, found+" "+modifiedInput.size()+"");//debug code
+                            results.append("Search term found in file: " + aList.get(i) + "!\n");//adds file to results list
                         }
                         break;
                     } else {
-                        found =0;
-                        k++;
+                        found = 0;//if nth word does not match, resets the counter.
+                        k++;//moves to next word in file
                     }
                 }
             }
