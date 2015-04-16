@@ -56,7 +56,7 @@ public class SearchManager {
         try {
             Scanner scanner = new Scanner(new File(s));
             while (scanner.hasNext()) {
-                list.add(scanner.next());
+                list.add(scanner.next().toLowerCase());//adds lowercase text to the ArrayList
             }
             scanner.close();
         } catch (Exception e) {
@@ -79,7 +79,7 @@ public class SearchManager {
         ArrayList<String> contents = new ArrayList<>();
         //Calls the normalizeString method to normalize the string.
         String inputString = normalizeString();
-        
+
         //Populates an ArrayList with the input given by the user
         Scanner scanner = new Scanner(inputString);
         ArrayList<String> modifiedInput = new ArrayList<>();
@@ -99,22 +99,64 @@ public class SearchManager {
                 }
             }
         }
-        
+
         //JOPtionPane which presents the user with a list of matches or a window which
         //tells them that the program couldn't find anything.
-        if(results.length() < 1){
+        if (results.length() < 1) {
             JFrame resultsFrame = new JFrame("Sorry!");
             JOptionPane.showMessageDialog(resultsFrame, "No applicable file found.");
-        }
-        else{
+        } else {
             JFrame resultsFrame = new JFrame("Awesome!");
             JOptionPane.showMessageDialog(resultsFrame, results, "Awesome!", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
-    //performs an exact(PHRASE) search
+    //performs an exact(PHRASE) search - Jair Garcia-Varela
     static void exactSearch(ArrayList<String> aList) {
+        //StringBuilder for a popup menu which shows at the end of the search.
+        StringBuilder results = new StringBuilder();
+        //ArrayList which will contain the paths of index files
+        ArrayList<String> contents = new ArrayList<>();
+        //Calls the normalizeString method to normalize the string.
+        String inputString = normalizeString();
 
+        //Populates an ArrayList with the input given by the user
+        Scanner scanner = new Scanner(inputString);
+        ArrayList<String> modifiedInput = new ArrayList<>();
+        while (scanner.hasNext()) {
+            modifiedInput.add(scanner.next());
+        }
+
+        //The functionality of the method. If all items in order are found, returns result. if not found in order, no file returned
+        for (int i = 0; i < aList.size(); i++) {
+            int k = 0, found = 0;
+            contents = indexReader(i, aList);
+            for (int j = 0; j < modifiedInput.size(); j++, k++) {
+                while ((k + 1) < contents.size()) {
+                    if (contents.get(k).equalsIgnoreCase(modifiedInput.get(j))) {
+                        found++;
+                        if (found == modifiedInput.size()) {
+                            JOptionPane.showMessageDialog(null, found+" "+modifiedInput.size()+"");
+                            results.append("Search term found in file: " + aList.get(i) + "!\n");
+                        }
+                        break;
+                    } else {
+                        found =0;
+                        k++;
+                    }
+                }
+            }
+        }
+
+        //JOPtionPane which presents the user with a list of matches or a window which
+        //tells them that the program couldn't find anything.
+        if (results.length() < 1) {
+            JFrame resultsFrame = new JFrame("Sorry!");
+            JOptionPane.showMessageDialog(resultsFrame, "No applicable file found.");
+        } else {
+            JFrame resultsFrame = new JFrame("Awesome!");
+            JOptionPane.showMessageDialog(resultsFrame, results, "Awesome!", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
 }
