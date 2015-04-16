@@ -132,7 +132,7 @@ public class SearchManager {
             int k = 0, found = 0;
             contents = indexReader(i, aList);//file contents
             for (int j = 0; j < modifiedInput.size(); j++, k++) {
-                while ((k + 1) < contents.size()) {
+                while (k < contents.size()) {
                     if (contents.get(k).equalsIgnoreCase(modifiedInput.get(j))) {//checks to see if words are the same
                         found++;
                         if (found == modifiedInput.size()) {//checks to make sure all the entered items have been found in order and it is the end of inputstring
