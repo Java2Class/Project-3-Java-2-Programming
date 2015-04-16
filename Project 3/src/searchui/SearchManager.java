@@ -66,8 +66,67 @@ public class SearchManager {
         return list;
     }
 
-    //performs an all(AND) search
+    //performs an all(AND) search - John Silvey
     static void allSearch(ArrayList<String> aList) {
+        //StringBuilder for a popup menu which shows at the end of the search.
+        StringBuilder results = new StringBuilder();
+        //ArrayList which will contain the paths of index files
+        ArrayList<String> contents = new ArrayList<>();
+        //Calls the normalizeString method to normalize the string.
+        String inputString = normalizeString();
+        //copy aList to another arrayList for testing
+        ArrayList<String> aListCopy = new ArrayList<>(); 
+        
+        //copy aList into duplicate array so the actual index is not deleted
+        for(int i =0; i< aList.size();i++){
+            aListCopy.set((i), aList.get(i));
+        }
+                  
+
+        //Populates an ArrayList with the input given by the user
+        Scanner scanner = new Scanner(inputString);
+        ArrayList<String> modifiedInput = new ArrayList<>();
+        while (scanner.hasNext()) {
+            modifiedInput.add(scanner.next());
+        }
+
+        //The functionality of the method. The file must contain ALL words in the 
+        //search. If any single word is missing the file is deleted from the copied index
+        
+        for (int i = 0; i < aList.size(); i++) {
+            //read in the contents of each file
+            contents = indexReader(i, aList);
+            int j = 0;
+            String testString = modifiedInput.get(j);
+            //Loop through the search words in the text field
+            
+            while (j < modifiedInput.size()){
+                //if a search word is not found discard that file from the copy array
+                if (!contents.contains(testString)){
+                    aListCopy.remove(i); 
+                }
+                //increment to go to next word in search string
+                j++;               
+            }            
+            
+        }
+        //this is just debugging code to see which files are left in the copied index
+        for(int i = 0; i< aListCopy.size(); i++)
+        {
+        JOptionPane.showMessageDialog(null,aListCopy.get(i));
+        }
+        
+        //  Code below is not yet working
+
+        //JOPtionPane which presents the user with a list of matches or a window which
+        //tells them that the program couldn't find anything.
+        if (results.length() < 1) {
+            JFrame resultsFrame = new JFrame("Sorry!");
+            JOptionPane.showMessageDialog(resultsFrame, "No applicable file found.");
+        } else {
+            JFrame resultsFrame = new JFrame("Awesome!");
+            JOptionPane.showMessageDialog(resultsFrame, results, "Awesome!", JOptionPane.INFORMATION_MESSAGE);
+        }
 
     }
 
